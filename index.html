@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Content Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <button
+      class="theme-toggle"
+      id="themeToggle"
+      type="button"
+      aria-label="Switch to dark mode"
+      aria-pressed="false"
+      title="Toggle light and dark mode"
+    >
+      <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__text">Dark</span>
+    </button>
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Prompt engineered output studio</p>
+          <h1>Smart Content Generator</h1>
+          <p>
+            Turn a rough idea into structured content for blogs, code, campaigns,
+            briefs, and social posts.
+          </p>
+        </div>
+        <img
+          src="assets/content-workspace.png"
+          alt="Illustration of structured content cards generated from prompt blocks"
+        />
+      </section>
+
+      <section class="workspace" aria-label="Content generator workspace">
+        <form class="control-panel" id="generatorForm">
+          <div class="panel-heading">
+            <span class="status-dot"></span>
+            <div>
+              <h2>Input</h2>
+              <p>Shape the prompt before generating.</p>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Simple input</span>
+            <textarea
+              id="topic"
+              rows="5"
+              placeholder="Example: Announce a new AI productivity course for busy founders"
+              required
+            ></textarea>
+          </label>
+
+          <div class="grid-2">
+            <label class="field">
+              <span>Output type</span>
+              <select id="outputType">
+                <option value="blog">Blog post</option>
+                <option value="email">Marketing email</option>
+                <option value="code">Code snippet</option>
+                <option value="social">Social post</option>
+                <option value="brief">Strategy brief</option>
+                <option value="campaign">Campaign planning</option>
+                <option value="copywriting">Copywriting</option>
+                <option value="asset">Asset production</option>
+                <option value="reporting">Performance reporting</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Tone</span>
+              <select id="tone">
+                <option value="clear">Clear</option>
+                <option value="persuasive">Persuasive</option>
+                <option value="technical">Technical</option>
+                <option value="friendly">Friendly</option>
+                <option value="executive">Executive</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid-2">
+            <label class="field">
+              <span>Audience</span>
+              <input
+                id="audience"
+                type="text"
+                value="busy professionals"
+                autocomplete="off"
+              />
+            </label>
+
+            <label class="field">
+              <span>Length</span>
+              <select id="length">
+                <option value="concise">Concise</option>
+                <option value="standard" selected>Standard</option>
+                <option value="detailed">Detailed</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="field">
+            <legend>Prompt controls</legend>
+            <label class="check-row">
+              <input type="checkbox" id="includeStructure" checked />
+              <span>Use explicit structure</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" id="includeExamples" checked />
+              <span>Add examples or concrete details</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" id="includeCta" checked />
+              <span>Include a next step</span>
+            </label>
+          </fieldset>
+
+          <label class="field">
+            <span>Must include</span>
+            <input
+              id="keywords"
+              type="text"
+              placeholder="Optional keywords, features, or constraints"
+              autocomplete="off"
+            />
+          </label>
+
+          <button class="primary-action" type="submit">
+            <span aria-hidden="true">↗</span>
+            Generate content
+          </button>
+        </form>
+
+        <section class="output-panel" aria-live="polite">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Generated output</p>
+              <h2 id="outputTitle">Blog Post</h2>
+            </div>
+            <div class="button-group">
+              <button type="button" id="regenerateBtn" title="Regenerate">⟳</button>
+              <button type="button" id="copyBtn" title="Copy output">⧉</button>
+            </div>
+          </div>
+
+          <article class="output-card">
+            <pre id="contentOutput"></pre>
+          </article>
+
+          <div class="details-grid">
+            <section>
+              <h3>Engineered Prompt</h3>
+              <pre id="promptOutput"></pre>
+            </section>
+            <section>
+              <h3>Quality Notes</h3>
+              <ul id="qualityNotes"></ul>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status">Copied</div>
+    <script src="script.js"></script>
+  </body>
+</html>
